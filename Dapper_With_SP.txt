@@ -1,0 +1,63 @@
+How To Interact with Dapper with Stored Procedure
+
+1). Make a Stored procedure
+
+	Here is the syntax of SP : CREATE PROCEDURE procedure_name
+									AS
+									sql_statement
+									GO; 
+									
+	Ex: CREATE PROCEDURE GetProductsByCategory
+				@Category NVARCHAR(50)
+			AS
+			BEGIN
+				SELECT Id, Name, Price, Category
+				FROM Products
+				WHERE Category = @Category
+			END
+			
+			In This Category is The Parameter That We Are Taking
+			
+2). Making the model : ##### product model Which Contains the Category into it 
+
+Final Call : "How To Call SP into Function :"
+
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using Dapper;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string connectionString = "YourConnectionString";
+
+        using (var connection = new SqlConnection(connectionString))
+        {
+            // Open the connection
+            connection.Open();
+
+            // Define the stored procedure and parameter
+            var parameters = new { Category = "Electronics" };
+
+            // Call the stored procedure
+            var products = connection.Query<Product>(
+                "GetProductsByCategory",  // Stored procedure name
+                parameters,              // Parameters
+                commandType: CommandType.StoredProcedure // Specify the command type
+            );
+
+            // Display the results
+            foreach (var product in products)
+            {
+                Console.WriteLine($"Id: {product.Id}, Name: {product.Name}, Price: {product.Price}, Category: {product.Category}");
+            }
+        }
+    }
+}
+
+
+
+

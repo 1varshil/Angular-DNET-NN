@@ -1,0 +1,124 @@
+SO Basically the flow Will Look Like this 
+
+Aapke 5 layers ke architecture ke sequence mein data flow ko step-by-step samajhte hain. Presentation layer se lekar Data layer tak ka pura flow ek example ke saath explain karte hain.
+Layers Overview
+
+    Presentation Layer
+        User Interface (UI) ko represent karti hai.
+        Example: Web pages (HTML, Angular, React, Razor Pages) ya Mobile App.
+        Iska kaam user se request lena aur API layer ko pass karna hota hai.
+
+    Service Layer
+        APIs ke saath communication karte hain.
+        Business Logic Layer ke saath integrate hoti hai.
+
+    API Layer
+        Service Layer ke liye APIs provide karta hai.
+        Data ko Presentation aur Business Logic ke beech route karta hai.
+
+    Business Layer
+        Core business logic ko handle karta hai.
+        Ye Business rules apply karta hai aur Data Layer ke saath interact karta hai.
+
+    Data Layer
+        Database access aur queries ko handle karta hai.
+        CRUD (Create, Read, Update, Delete) operations ke liye Entity Framework ya SQL commands use hoti hain.
+
+Data Flow Example: User List Fetch
+Scenario
+
+User ne ek web application open kiya aur ek button press kiya jo “Get All Users” ka data fetch karta hai. Is request ka data flow kaise hoga:
+Step-by-Step Data Flow
+1. Presentation Layer
+
+    User UI pe “Get Users” button click karta hai.
+    Presentation Layer (e.g., Angular ya React) ek API request bhejti hai https://example.com/api/users.
+
+// Angular Example
+fetch('https://example.com/api/users')
+    .then(response => response.json())
+    .then(data => console.log(data));
+
+2. Service Layer
+
+    Presentation Layer ka request Service Layer ko jaata hai.
+    Service Layer API Layer ko HTTP request bhejta hai.
+
+public class UserService
+{
+    private readonly HttpClient _httpClient;
+    public UserService(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+    }
+
+    public async Task<List<User>> GetAllUsersAsync()
+    {
+        var response = await _httpClient.GetAsync("https://example.com/api/users");
+        return await response.Content.ReadAsAsync<List<User>>();
+    }
+}
+
+3. API Layer
+
+    Service Layer ka request API controller me aata hai.
+    Controller request ko process karta hai aur Business Layer ko forward karta hai.
+
+[ApiController]
+[Route("api/users")]
+public class UserController : ControllerBase
+{
+    private readonly IUserBusiness _userBusiness;
+    public UserController(IUserBusiness userBusiness)
+    {
+        _userBusiness = userBusiness;
+    }
+
+    [HttpGet]
+    public IActionResult GetUsers()
+    {
+        var users = _userBusiness.GetAllUsers();
+        return Ok(users);
+    }
+}
+
+4. Business Layer
+
+    API Layer ka request Business Logic ko milta hai.
+    Business Layer koi business rules apply karta hai aur Data Layer ko call karta hai.
+
+public class UserBusiness : IUserBusiness
+{
+    private readonly IUserData _userData;
+    public UserBusiness(IUserData userData)
+    {
+        _userData = userData;
+    }
+
+    public List<User> GetAllUsers()
+    {
+        // Example: Business Rule (Filter Active Users Only)
+        var allUsers = _userData.GetUsers();
+        return allUsers.Where(user => user.IsActive).ToList();
+    }
+}
+
+5. Data Layer
+
+    Business Layer ka request Data Layer me aata hai.
+    Data Layer database query run karta hai aur result return karta hai.
+
+public class UserData : IUserData
+{
+    private readonly AppDbContext _dbContext;
+    public UserData(AppDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
+    public List<User> GetUsers()
+    {
+        return _dbContext.Users.ToList(); // Fetch users from database
+    }
+}
+

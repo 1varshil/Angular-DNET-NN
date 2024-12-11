@@ -1,0 +1,16 @@
+6 layer Architecture
+
+
+1. 	Presentation Layer :- ( For The Interactive With the UI - We Use The Angular, React)
+
+2.  API Layer :- For Interact With The API Endpoints - Request Comes From Presentation Layer 
+
+3. 
+
+1- > 4 -> 2 -> Busineee (enginess+ processor)  -> Data -> entity and Model
+
+Query = sp_Stue
+
+Query.storeProcessor()
+
+Each And Every One Purpose : Sp is Created  

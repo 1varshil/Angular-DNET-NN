@@ -1,0 +1,7 @@
+CLR + Class Library
+
+CLR -> do IL code -> Machine Code
+
+Class - > Data + Methods
+
+Namespace is attached with class -> DLL is outerLayer

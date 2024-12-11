@@ -1,0 +1,15 @@
+Angular Projects 
+
+1). FCart E-commarce Application Project (AddtoCart and Filter)
+2). Student Registration ( App And Form) 
+3). Quix App -> Made The Quiz Application that Display Questions And Mark it 
+				Their name and Their Score 
+4). News Application -> They Display the Latest News Based on the Current Data
+
+5). Authentication -> for The Login and Registration Purspecive Includeed AUthguard
+
+6) Employee_Management -> created (uth) online Employee CRUD TOAStER
+7).Dashboard -> Created the Dashboard for the purpose of Intergrating the Chart.js into Our Code 
+6). CRUD - FS -> Made a CRUD using Angular + .net (Web API);
+8). Emp form JQUERY -> Created a CRUD using JQUERY just a form and Update it 
+9). nstream -> for like netflix type prime video Page such that displays the movies and thier ratings

@@ -1,0 +1,13 @@
+So Basically the Concept of 6 Layer architecture s look like 
+1).Data L 
+2)Engine
+3).Business Layer (Projection l)
+4)API L
+5)Service L
+6)Presentation L
+
+Data Ui Mate 3) conccept 
+
+1).Flurrel 
+2). httpClient 
+3). AJAX

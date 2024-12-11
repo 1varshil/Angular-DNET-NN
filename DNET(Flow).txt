@@ -1,0 +1,35 @@
+1. Lists and Collections
+
+2. Classes and Objects
+
+3. Inheritance and Polymorphism
+
+4. Interfaces and Abstract Classes
+
+5. Delegates and Events
+
+6. LINQ (Language Integrated Query)
+
+7. Exception Handling
+
+8. Asynchronous Programming (async/await)
+
+9. Generics
+
+10. Properties
+
+11. Dependency Injection
+
+12. File Handling
+
+13. Nullable Types
+
+14. Extension Methods
+
+15. Reflection
+
+19. String Manipulation
+
+18. Design Patterns(repo);
+
+20. Serialization

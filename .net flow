@@ -1,0 +1,110 @@
+MVC ka Basic Flow
+
+    Model:
+        Data ko handle karne ke liye hota hai.
+        Yeh database se data fetch karta hai ya data ko save/update/delete karta hai.
+        Real-world mein: "Product" naam ka ek model hoga jo products ki information (e.g., ID, Name, Price) store karega.
+
+    View:
+        Yeh user interface hota hai jo user ko dikhaya jata hai.
+        Isme HTML/CSS/JavaScript hota hai.
+        Real-world mein: Product list ya form jo user ko products add/edit karne ke liye dikhai dega.
+
+    Controller:
+        Yeh Model aur View ke beech ka bridge hota hai.
+        User ke request ko handle karta hai, required data fetch karta hai (Model se), aur response (View ko) send karta hai.
+        Real-world mein: "ProductsController" ka ek method GetProducts() data fetch karega aur user ko return karega.
+
+Web API Flow
+
+.NET Web API RESTful architecture ko follow karta hai jo CRUD operations ko handle karta hai:
+
+    Client Request (HTTP Request):
+    User ya client (browser/app) ek request bhejta hai (GET, POST, PUT, DELETE).
+
+    Example:
+        GET /api/products → Saare products ki list chahiye.
+        POST /api/products → Naya product add karna hai.
+
+    Routing:
+    API request ko appropriate controller aur method tak route karta hai.
+
+    Example:
+        /api/products → ProductsController
+        /api/products/5 → GetProductById(int id) method.
+
+    Controller (Business Logic):
+    Controller request ko handle karta hai aur Model ke saath kaam karta hai.
+
+    Example:
+        GetProducts() method database se saare products ka data fetch karega.
+        AddProduct(Product product) ek naya product save karega.
+
+    Model (Data Layer):
+    Controller Model ka use karta hai to interact with the database.
+
+    Example:
+        Entity Framework ka use karke data fetch/save hota hai.
+
+    Response (HTTP Response):
+    Controller se data milta hai aur JSON/XML format mein client ko bheja jata hai.
+
+Real-World Example: Product Management Application
+
+Sochiye ek e-commerce application hai jisme products ka data manage karna hai.
+
+    Database Setup:
+    Ek Products table create kiya gaya jisme Id, Name, Price, aur Category columns hain.
+
+    Model:
+
+public class Product {
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    public string Category { get; set; }
+}
+
+Controller:
+
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProductsController : ControllerBase {
+        private readonly ApplicationDbContext _context;
+
+        public ProductsController(ApplicationDbContext context) {
+            _context = context;
+        }
+
+        [HttpGet]
+        public IActionResult GetProducts() {
+            var products = _context.Products.ToList();
+            return Ok(products);
+        }
+
+        [HttpPost]
+        public IActionResult AddProduct([FromBody] Product product) {
+            _context.Products.Add(product);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetProducts), new { id = product.Id }, product);
+        }
+    }
+
+    View (Frontend part):
+    User ek form bharta hai jo product ka naam aur price save karta hai. Backend mein POST /api/products ko call karta hai.
+
+Flow Visualization
+
+    Frontend (React/Angular/HTML): User ek naya product "Mobile" add karta hai.
+    API Request: POST /api/products request backend ko bheji jaati hai.
+    Controller:
+        Request ko AddProduct method process karta hai.
+        Product ko database mein save karta hai.
+    Model: Product information ko database ke Products table mein insert karta hai.
+    Response: Success message aur newly added product ka data frontend ko JSON format mein bheja jata hai.
+
+Diagram
+
+User --> View (Form) --> Controller --> Model --> Database
+User <-- View (JSON Response) <-- Controller <-- Model <-- Database
+

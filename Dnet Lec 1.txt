@@ -1,0 +1,14 @@
+Basically .net has Three major development modes
+
+1.Web Forms - event Driven Application 
+2. MVC - MVC 5 Last Version 
+3. Web Pages - Server Side 
+
+
+Current and New Version - Asp.net Core 
+Open Source
+Cloud Support  
+
+Asp.net Runs Only On Windows but Asp.net Core is running on any System 
+
+Asp.net Component -> Web Forms , MVC, 

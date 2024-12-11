@@ -1,0 +1,20 @@
+JQuery in ts 
+cookie and session in ts
+unsubscribe observable in ts
+fragmentation in ts 
+
+
+***********Importing the bootstrap in ng*********
+npm install bootstrap --save
+
+
+Add the following import definition in the styles.scss file:
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+install typeScript into this :npm install typescript@4.8
+Stepper form
+
+UI Dev Guide
+
+https://www.ganatan.com/tutorials/routing-with-angular

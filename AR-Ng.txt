@@ -1,0 +1,108 @@
+this.activatedRoute.snapshot.params.get('id');
+
+the above line and the line below returns the Same value :
+
+const id = this.activatedRoute.snapshot.paramMap.get('id');
+
+snapshot.params will fetch the value for only one or we can say single time 
+
+
+Snapshot is a static method ok 
+
+so when Page Loads then it will fetch the parameter's id
+ so If we want that only 1 Time id value then we can use the snapshot() ;
+
+if we Want that in changes in the routes We Don't Want then and Then only we can use the Snapshot() static Method ok 
+
+
+but in case of we want the id from Routes that can be changes in url then we can use the paraMap Observable Such that it will returns the real Time Id that might be Changed frequently 
+
+
+this can be used for performing the actions that can be based on changes that applicable in the routes
+	
+
+ this.activatedRoute.paramMap.subscribe((params) => {
+    const id = params.get('id');
+    console.log(id); // Jab bhi 'id' change hogi, isse update milega
+  });
+
+
+
+/**********************************Css Transition Property useCases ************************************************************
+
+So Basically what happens is transition is used for making the things so appropriate ok (Ex: Smoothly Transition Batana Ho tab )
+like ex: transition: property duration timing function delay ( 4 Parameter but yes the last one is optional So You can Ignore it -- Delay) 
+
+
+ANIMATION IN CSS
+
+
+Pune to Nagpur 2023-12-13
+1/2
+
+ng-run.com _ website for running the angular applications
+
+
+we can also create the Single instance of the 
+formControl Every time we don't have the formGroup and formCOntrol inside so yes you can avoid it 
+
+When add emailid ?: string ; then it will create an optional Property in typescript File ok 
+
+Always starts the interface name using first Letter as I that denotes the interface 
+
+
+
+/*********************************Using classes and interface ********************************************************::
+
+When We Are Dealing With The classes ok so at that time those all variables which we Creates then that all variable needs to be declared inside the 
+Constructor that we are creates in the class ok and those all variables are Seperated by the basically Semi-colan ok
+
+But When Dealing WIth The Interface ok SO at that time all the variables are being seperated By The colan Itself 
+
+/******************************When to use the class and when to use the interface *********************************************
+
+
+use the Class when you want to bind the it with form 
+
+
+use the interface when you want to bind it hold array	
+
+
+in the One File you Can Create the Multiple Classes Into it 
+
+
+/********************************from EVent Example ***********************************************************************************
+
+
+Unlike all the fromEvent also DOing the same FUnctionality as the subject does like it bind the element with the 'EVENT' and after that it can like modify the response ok 
+Like for example in click on and giving input it will give the only search for the updated search (not on every key Stroke) 
+
+
+const searchObs = fromEvent(this.search.nativeElement,"input").
+			.pipe(
+				filter((e:any) => e.target.value != "")
+				switchMap((e:any) => {
+					return this.http.get(`url/users?q=${e.target.value}`)		
+						}
+				)
+
+
+then we need to Subscribe it ::
+	searchObs.subscribe((res) => {
+				console.log(res);
+			})
+
+
+
+/**************************************All About the INterceptor in angular ***************************************************
+
+SO basically interceptor we use generally for the intercepting the HTTP Request 
+
+------> 1) So basically it consist Of the intercept Method (It Consist Of the basically 2 Parameters : request , and next ) 
+
+
+
+
+
+
+

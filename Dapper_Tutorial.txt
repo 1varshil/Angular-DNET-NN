@@ -1,0 +1,31 @@
+Dapper is Basically Connecting The Queries With The Db Using SQL 
+
+ SO Basically For Performance Issue WIth Entity We Use Teh Dapper -> In Entity LinQ Queries Were there 
+ 
+ Dapper is Safe From SQL Injection
+ 
+ Performance Wise Dapper Is Best
+ 
+ Dapper Is a Nuget Library Can be USed In Any .net Project 
+ 
+ For an Existing Db ., USing Dapper is a optimal Choice 
+ 
+ so In Repository We use Basically This Methods :
+ 
+ 1). QueryAsync : Query Execute and List Return in Asyncronous Manner and Retrieve Multiple Rows 
+ 
+ 2). QueryFirstAsync : Return the first Result of the Query if Not Found than It Will Gives Error 
+ 
+ 3).QueryFirstOrDefaultAsync : Basically Return the First Result and if not found then returns the Default (T)
+								not Return the Exception
+								
+ 4). QuerySingleAsync : - Basically It Returns The First Row Only if More than That it will
+							throw an error 
+						We use This Method When We Require only Single Row as Result 
+						
+ 5). ExecuteAsync : - Basically It Will Execute the Non-Query Statements Like ex: Insert,Update,Delete
+ 
+ 
+ 
+ 
+ 
